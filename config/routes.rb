@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :end_users
 
   namespace :admin do
+  	devise_for :admin, controllers: {
+      sessions: 'admin/sessions',
+      registrations: 'admin/registrations',
+      passwords: 'admin/passwords'
+    }
   	root to: "homes#top"
   	resources :items, only:[:index, :new, :create, :show, :edit, :update]
   	resources :genres, only:[:index, :create, :edit, :update]
@@ -13,6 +16,11 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
+  	devise_for :end_users, controllers: {
+      sessions: 'public/sessions',
+      registrations: 'public/registrations',
+      passwords: 'public/passwords'
+    }
   	root to: "homes#top"
   	get "/about", to: "homes#about"
   	resources :items, only:[:index, :show]

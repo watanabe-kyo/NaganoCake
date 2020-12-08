@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   	get "/end_users/unsubscribe", to: "end_users#unsubscribe"
   	patch "/end_users/withdraw", to: "end_users#withdraw"
   	resource :end_users, only:[:show, :edit, :update]
-  	delete "cart_items/destroy_all", to: "end_users#destroy_all", as: "destroy_all"
+  	delete "cart_items/destroy_all", to: "cart_items#destroy_all", as: "destroy_all"
   	resources :cart_items, only:[:index, :update, :destroy, :create]
   	post "/orders/comfirm", to: "orders#comfirm"
   	get "/orders/thanks", to: "orders#thanks"

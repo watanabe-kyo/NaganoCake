@@ -1,7 +1,7 @@
 <%= attachment_image_tag @item, :image, :fill, 150, 100, fallback: "No_image.jpg" %>
 
 <%= @item.name %>
-<%= @item.explanation %>
+<%= @item.introduction %>
 <%= @item.price %>円(税込)
 <%= form_for([:end_user, @cart_item], url: cart_items_path) do |cart_item| %>
 	<%= cart_item.label :個数 %>

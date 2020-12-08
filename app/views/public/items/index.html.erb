@@ -1,0 +1,40 @@
+	<h1>商品一覧（全<%= Item.count %>件）</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<p class="text-bk"><b>ジャンル検索</b></p>
+					</div>
+					<div class="panel-body">
+						<% @genres.each do |genre| %>
+
+							<%= link_to genre.name, items_path(genre.id), class: "text-bk" %><br>
+
+						<% end %>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-10">
+
+				<% @items.each do |item| %>
+
+					<div class="item-boxes">
+						<div class="item-box">
+
+
+							<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
+
+							<%= link_to item.name, item_path(item), class: "text-bk" %>
+
+							<%= link_to item.price, item_path(item), class: "text-bk" %>
+
+
+						</div>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+	</div>

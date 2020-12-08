@@ -1,0 +1,23 @@
+<h1>管理者＃商品詳細</h1>
+
+<%= attachment_image_tag @item, :image, :fill, 60, 60, fallback: "No_image.jpg" %></td>
+<%= @item.name %>
+<%= @item.introduction %>
+<% if @item.genre_id == 1 %>
+	<p>プリン</p>
+<% elsif @item.genre_id == 2 %>
+	<p>焼き菓子</p>
+<% elsif @item.genre_id == 3 %>
+	<p>ケーキ</p>
+<% else %>
+	<p>キャンディ</p>
+<% end %>
+<%= @item.price %>円
+<% if @item.is_active == 1 %>
+	<p>販売中</p>
+<% else %>
+	<p>売切れ</p>
+<% end %></td>
+
+<%= link_to "一覧へ戻る", admin_items_path %>
+

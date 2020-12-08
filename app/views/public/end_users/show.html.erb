@@ -1,0 +1,30 @@
+
+
+<div class="container">
+	<div class="col-xs-6 col-offset-4">
+	<p>マイページ</p>
+	<%= link_to '編集する', edit_end_users_path(current_end_user), class: "btn btn-info" %>
+	<%= link_to 'パスワード変更',"", class: "btn btn-info" %>
+	<table class="table">
+		<tr>
+			<th>氏名</th> <td><%= current_end_user.last_name %>　<%= current_end_user.first_name %></td>
+		</tr>
+		<tr>
+			<th>カナ</th> <td><%= current_end_user.last_name_kana %>　<%= current_end_user.first_name_kana %></td>
+		</tr>
+		<tr>
+			<th>郵便番号</th> <td><%= current_end_user.postal_code %></td>
+		</tr>
+		<tr>
+			<th>住所</th> <td><%= current_end_user.address %></td>
+		</tr>
+		<tr>
+			<th>電話番号</th> <td><%= current_end_user.telephone_number %></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th> <td><%= current_end_user.email %></td>
+		</tr>
+	</table>
+	<%= link_to '配送先の一覧をみる',addresses_path, class: "btn btn-info"  %>
+	<%= link_to '注文履歴の一覧を見る', "", class: "btn btn-info" %>
+</div>

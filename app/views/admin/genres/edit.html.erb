@@ -1,0 +1,9 @@
+<%= form_with model: @genre,url:admin_genre_path, action: :update, local: true do |genre| %>
+	<p>ジャンル名</p>
+	<%= genre.text_field :name %>
+	<%= genre.radio_button :is_active, true %>
+	<%= genre.label "有効", {value: :true, style: "display: inline-block;"}, checked: true %>
+	<%= genre.radio_button :is_active, false %>
+	<%= genre.label "無効", {value: :false, style: "display: inline-block;"} %>
+	<%= genre.submit "登録" %>
+<% end %>

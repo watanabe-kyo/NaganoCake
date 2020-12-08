@@ -1,0 +1,11 @@
+<%= attachment_image_tag @item, :image, :fill, 150, 100, fallback: "No_image.jpg" %>
+
+<%= @item.name %>
+<%= @item.explanation %>
+<%= @item.price %>円(税込)
+<%= form_for([:end_user, @cart_item], url: cart_items_path) do |cart_item| %>
+	<%= cart_item.label :個数 %>
+	<%= cart_item.select :amount, (1..100) %>
+	<%= cart_item.hidden_field :item_id, :value => @item.id %> <!-- ここからitemの情報を送る -->
+	<%= cart_item.submit "カートに入れる" %>
+<% end %>

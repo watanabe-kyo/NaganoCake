@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   	get "/about", to: "homes#about"
   	resources :items, only:[:index, :show] do
       get :search, on: :collection
+      # idを含まない
+      get :genresearch, on: :member
+      # idを含む
     end
   	get "/end_users/unsubscribe", to: "end_users#unsubscribe"
   	patch "/end_users/withdraw", to: "end_users#withdraw"

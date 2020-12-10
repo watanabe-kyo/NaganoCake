@@ -4,29 +4,46 @@
 	  <%= search.submit :search %>
 	<% end %>
 	<table>
-	  <thead>
-	    <tr>
-	      <th>検索結果</th>
-	    </tr>
-	  </thead>
-	<% if @search != nil %>
-	  <tbody>
-	    <% @search.each do |item| %>
+		<thead>
 			<tr>
-				<% if item.is_active == true %>
-
-					<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
-
-					<%= link_to item.name, item_path(item), class: "text-bk" %>
-
-					<%= link_to item.price, item_path(item), class: "text-bk" %>
-
-				<% end %>
-
+			  	<th>検索結果</th>
 			</tr>
+	  	</thead>
+	  	<tbody>
+		<% if @search != nil %>
+		    <% @search.each do |item| %>
+				<tr>
+					<% if item.is_active == true %>
+
+						<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
+
+						<%= link_to item.name, item_path(item), class: "text-bk" %>
+
+						<%= link_to item.price, item_path(item), class: "text-bk" %>
+
+					<% end %>
+
+				</tr>
+		    <% end %>
+		<% end %>
+		<% if @genreitems != nil %>
+			<tbody>
+			    <% @genreitems.each do |item| %>
+					<tr>
+						<% if item.is_active == true %>
+
+							<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
+
+							<%= link_to item.name, item_path(item), class: "text-bk" %>
+
+							<%= link_to item.price, item_path(item), class: "text-bk" %>
+
+						<% end %>
+
+					</tr>
+				<% end %>
+	  		</tbody>
 	    <% end %>
-	  </tbody>
-	<% end %>
 	</table>
 
 	<div class="container">
@@ -39,7 +56,7 @@
 					<div class="panel-body">
 						<% @genres.each do |genre| %>
 
-							<%= link_to genre.name, items_path(genre.id), class: "text-bk" %><br>
+							<%= link_to genre.name, genresearch_item_path(genre.id), class: "text-bk" %><br>
 
 						<% end %>
 					</div>
@@ -54,16 +71,13 @@
 						<div class="item-box">
 							<% if item.is_active == true %>
 
+								<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
 
-							<%= link_to (attachment_image_tag item, :image, :fill, 150, 100, fallback: "No_image.jpg"), item_path(item) %>
+								<%= link_to item.name, item_path(item), class: "text-bk" %>
 
-							<%= link_to item.name, item_path(item), class: "text-bk" %>
-
-							<%= link_to item.price, item_path(item), class: "text-bk" %>
+								<%= link_to item.price, item_path(item), class: "text-bk"%>
 
 							<% end %>
-
-
 						</div>
 					</div>
 

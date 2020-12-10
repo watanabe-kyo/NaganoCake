@@ -22,4 +22,14 @@ class Public::ItemsController < ApplicationController
 	    render :index
 	end
 
+	def genresearch
+		@genreitems = Item.where(genre_id: params[:id])
+		if @genreitems.present?
+		else
+			@genreitems = Item.none
+		end
+		@genres = Genre.all
+		@items = Item.all
+		render :index
+	end
 end

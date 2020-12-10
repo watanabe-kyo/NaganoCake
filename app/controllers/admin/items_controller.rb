@@ -5,6 +5,8 @@ class Admin::ItemsController < ApplicationController
 
 	def new
 		@item = Item.new
+		@genres = Genre.where(is_active: 'true')
+		# tureであるものを選ぶ
 	end
 
 	def show

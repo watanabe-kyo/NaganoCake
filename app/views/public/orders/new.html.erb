@@ -1,0 +1,42 @@
+
+<div class="container">
+	<%= form_with model: @order, url: orders_comfirm_path, method: :post,local: true do |order| %>
+		<p>支払方法</p>
+		<%= order.radio_button :payment_method, "クレジットカード" %>　<!-- # モデルから持ってくる -->
+		<%= order.label "クレジットカード", {value: :クレジットカード, style: "display: inline-block;"}, checked: "クレジットカード" %><br>
+		<%= order.radio_button :payment_method, "銀行振込" %>
+		<%= order.label "銀行振込", {value: :銀行振込, style: "display: inline-block;"} %>
+
+	<!-- 	# f.を外す
+ -->
+		<P>お届け先</P>
+		<label><%= order.radio_button :address_option, 0, checked: true %>ご自身の住所</label> <!-- 登録済み住所 --><br>
+		<%= @end_user.postal_code %>
+		<%= @end_user.address %>
+		<%= @end_user.last_name %> <%= @end_user.first_name %><br>
+		<label><%= order.radio_button :address_option, 1 %>登録済住所から選択</label> <!-- 登録先住所から選択 --><br>
+		 <%= order.collection_select :address_id, @addresses, :id, :addresses, {prompt: "選択してください"} %><br>
+<!-- 		 f.collection_select(メソッド名, オブジェクトの配列, value属性の項目, テキストの項目 [, オプション or HTML属性 or イベント属性])  -->
+
+		<label><%= order.radio_button :address_option, 2 %>新しいお届け先</label> <!-- 新しいお届け先 --><br>
+		<table>
+			<tr>
+				<th><%= order.label "郵便番号(ハイフンなし)" %></th>
+				<td><%= order.text_field :postal_code %></td>
+			</tr>
+			<tr>
+				<th><%= order.label "住所" %></th>
+				<td><%= order.text_field :address %></td>
+			</tr>
+			<tr>
+				<th><%= order.label "宛名" %></th><br>
+				<td><%= order.text_field :receiver %></td>
+			</tr>
+		</table>
+		<%= order.hidden_field :end_user_id, :value => @end_user.id %>
+
+	 		<%= order.hidden_field :shipping_cost, :value => 800 %>
+
+ 		<%= order.submit '確認画面へ進む' %>
+	<% end %>
+</div>

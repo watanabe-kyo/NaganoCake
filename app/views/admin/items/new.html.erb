@@ -8,13 +8,15 @@
 	<%= item.label :introduction, '説明文' %>
 	<%= item.text_area :introduction %><br>
 	<%= item.label :genre_id, 'ジャンル名' %>
-	<%= item.select :genre_id, [["プリン", "1"], ["焼き菓子", "2"], ["ケーキ", "3"], ["キャンディ", "4"]], include_blank: "選択して下さい" %><br>
+	<%= item.collection_select :genre_id, @genres, :id, :name, include_blank: "選択して下さい" %><br>
+     <!-- :id は選択肢にその場で振られる番号。nameはデータベースのテーブル（今回はgenresテーブル）どのカラムを選択肢名として表示するかを選択。
+	 genre_idは実際にデータを入れるカラム。@genresはどのデータを参照するか。　 -->
 	<%= item.label :price, '値段' %>
 	<%= item.text_field :price %><br>
 	<%= item.label :is_active, '販売ステータス' %>
 	<%= item.radio_button :is_active, "true", :checked => true %> <!-- radio_buttonにcheckedをつける -->
 	<%= item.label "販売中", {value: :販売中, style: "display: inline-block;"} %>
-	<%= item.radio_button :sale_status, "false" %>
+	<%= item.radio_button :is_active, "false" %> <!-- :is_active部分を異なる名前にすると複数選択ができてしまう。 -->
 	<%= item.label "売切れ", {value: :売切れ, style: "display: inline-block;"} %><br>
 	<%= item.submit '登録' %>
 <% end %>

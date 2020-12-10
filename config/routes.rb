@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     end
   	root to: "homes#top"
   	get "/about", to: "homes#about"
-  	resources :items, only:[:index, :show]
+  	resources :items, only:[:index, :show] do
+      get :search, on: :collection
+    end
   	get "/end_users/unsubscribe", to: "end_users#unsubscribe"
   	patch "/end_users/withdraw", to: "end_users#withdraw"
   	resource :end_users, only:[:show, :edit, :update]
